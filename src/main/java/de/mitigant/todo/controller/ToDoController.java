@@ -2,6 +2,7 @@ package de.mitigant.todo.controller;
 
 import de.mitigant.todo.entity.ToDo;
 import de.mitigant.todo.service.ToDoService;
+import de.mitigant.todo.status.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -40,5 +41,19 @@ public class ToDoController {
     public ToDo getItem(@PathVariable("id") UUID id) {
         return toDoService.getSpecificItem(id);
     }
+
+    @PatchMapping("status/done/{id}")
+    @ResponseBody
+    public ToDo markItemAsDone(@PathVariable("id") UUID id){
+        return toDoService.markItemAsStatusDone(id);
+    }
+
+    @PatchMapping("status/notdone/{id}")
+    @ResponseBody
+    public ToDo markItemAsNotDone(@PathVariable("id") UUID id){
+        return toDoService.markItemAsStatusNotDone(id);
+
+    }
+
 
 }
