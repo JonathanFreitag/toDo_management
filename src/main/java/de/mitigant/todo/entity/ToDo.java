@@ -48,8 +48,9 @@ public class ToDo {
     private LocalDateTime createdAt;
 
     @Column(name = "due_at")
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dueAt;
+
+    @Column(name="done_at")
+    private LocalDateTime doneAt;
 
 }

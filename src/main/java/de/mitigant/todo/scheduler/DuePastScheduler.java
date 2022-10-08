@@ -17,6 +17,9 @@ public class DuePastScheduler {
     @Autowired
     private ToDoRepository toDoRepository;
 
+    /**
+     * change to PAST_DUE for all the items that their due date-time are passed
+     */
     @Transactional
     public void changeStatusToPastDue() {
         LocalDateTime now = LocalDateTime.now();
