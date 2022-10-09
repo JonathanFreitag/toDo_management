@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import de.mitigant.todo.enums.Status;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,6 +31,7 @@ import javax.persistence.Table;
 @Setter
 @Getter
 @Accessors(chain = true)
+@Builder
 public class ToDo {
 
     @Id
@@ -52,5 +54,7 @@ public class ToDo {
 
     @Column(name="done_at")
     private LocalDateTime doneAt;
+
+
 
 }

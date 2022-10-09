@@ -12,6 +12,9 @@ import java.time.LocalDateTime;
 public class ToDoMapper {
 
     public ToDo toDoRequestIntializeToToDo(ToDoRequest toDoRequest) {
+        if (toDoRequest == null) {
+            return null;
+        }
         ToDo toDo = new ToDo();
 
         toDo.setDescription(toDoRequest.getDescription());
@@ -24,6 +27,9 @@ public class ToDoMapper {
     }
 
     public ToDoResponse toDoToToDoResponse(ToDo toDo) {
+        if(toDo ==null){
+            return null;
+        }
         ToDoResponse toDoResponse = new ToDoResponse();
 
         toDoResponse.setDescription(toDo.getDescription());
