@@ -42,10 +42,24 @@ mvn spring-boot:run
 mvn test
 ```
 
+### Run in Docker Server  ###
+* Build docker file
+```
+docker build -t todo 
+```
+* Run docker file
+```
+docker run -p 9090:8080 todo 
+```
+Application will be Running in Port: 9090
 
 ### H2 link
 
 [H2 Login](http://localhost:8080/h2-console)
+#### Database Credentials
+* JDBC URL: jdbc:h2:mem:testdb
+* User Name: dhia
+* Password: mitigant2023
 
 ### Swagger link
 
