@@ -25,15 +25,21 @@ ToDo is a backend service allowing basic management of a simple to-do list.
                                    |                     |   Swagger          | 
                                    |                     |   lombok           | 
                                    |                     |   Junit            |
+                                   |                     |   Mockito                 |           
 
 ### Build the service  ###
 ```
 mvn clean install
 ```
-* the jar file is: MitigantToDo.jar
+* jar file is: MitigantToDo.jar under /target folder
 ### Run the service  ###
 ```
 mvn spring-boot:run
+```
+
+### Run tests  ###
+```
+mvn test
 ```
 
 
