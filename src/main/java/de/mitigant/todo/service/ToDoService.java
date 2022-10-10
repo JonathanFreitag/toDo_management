@@ -28,7 +28,7 @@ public class ToDoService {
     private final ToDoRepository toDoRepository;
 
     /**
-     * create new item, initialized to NOT_DONE as status
+     * Create new item, initialized to NOT_DONE as status
      * @param toDoRequest is ToDo Request body
      * @return toDo Response
      * @exception ResponseStatusException if the request is bad
@@ -46,7 +46,7 @@ public class ToDoService {
     }
 
     /**
-     * update description for an item
+     * Update description for an item
      * @param id unique identifier of the item needs to be update
      * @param description item description
      * @return toDo Response
@@ -67,7 +67,7 @@ public class ToDoService {
     }
 
     /**
-     * get Details for a specific item
+     * Get Details for a specific item
      * @param id unique identifier of the item
      * @return toDo Response
      * @exception ResponseStatusException if the Request is bed
@@ -81,25 +81,32 @@ public class ToDoService {
     }
 
     /**
-     * Mark and item as done when it's not done yet, and set done date-time
+     * Mark and item as done when it's not done yet, otherwise throw exception
      * @param id unique identifier of the item
      * @return toDo response
+     * @exception ResponseStatusException if http not acceptable
      */
     public ToDoResponse markItemAsStatusDone(UUID id) {
 
-        ToDo itemFound = toDoRepository.findById(id).orElseThrow(
-                () -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                        "Item not found."));
-        if (itemFound.getStatus().toString().equals(Status.NOT_DONE.toString())) {
-            itemFound.setStatus(Status.DONE);
-            itemFound.setDoneAt(LocalDateTime.now());
-            ToDo toDoUpdated= toDoRepository.save(itemFound);
-           return  toDoMapper.toDoToToDoResponse(toDoUpdated);
-        } else {
-            log.trace("can't change status to Done for this Item = " + id);
-            return null;
-        }
+        return toDoRepository.findToDoByStatusAndId(Status.NOT_DONE, id)
+                             .map(this::setItemToDoneAndCurrentDateTime).map(toDoRepository::save)
+                             .map(toDoMapper::toDoToToDoResponse).orElseThrow(() -> {
+                    log.error(" Can't update  item with id = " + id +"to as Done status");
+                    return new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,
+                            "Can't update this item to Done");
+                });
 
+    }
+
+    /**
+     * set item to Done Status and doneAt to Current LocalDateTime
+     * @param toDo input item
+     * @return item
+     */
+    private ToDo setItemToDoneAndCurrentDateTime(ToDo toDo) {
+        toDo.setStatus(Status.DONE);
+        toDo.setDoneAt(LocalDateTime.now());
+        return toDo;
 
     }
 
@@ -143,7 +150,7 @@ public class ToDoService {
     }
 
     /**
-     * get all toDo items
+     * Get all toDo items
      * @return list of toDo items
      */
     public List<ToDo> getAllItems() {
