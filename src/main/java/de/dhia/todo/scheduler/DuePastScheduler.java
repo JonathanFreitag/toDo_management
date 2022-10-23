@@ -1,7 +1,7 @@
-package de.mitigant.todo.scheduler;
+package de.dhia.todo.scheduler;
 
-import de.mitigant.todo.enums.Status;
-import de.mitigant.todo.repository.ToDoRepository;
+import de.dhia.todo.repository.ToDoRepository;
+import de.dhia.todo.enums.Status;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

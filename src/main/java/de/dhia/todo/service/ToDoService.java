@@ -1,13 +1,13 @@
-package de.mitigant.todo.service;
+package de.dhia.todo.service;
 
 import static java.util.Optional.ofNullable;
 
-import de.mitigant.todo.dto.ToDoRequest;
-import de.mitigant.todo.dto.ToDoResponse;
-import de.mitigant.todo.entity.ToDo;
-import de.mitigant.todo.mapper.ToDoMapper;
-import de.mitigant.todo.repository.ToDoRepository;
-import de.mitigant.todo.enums.Status;
+import de.dhia.todo.mapper.ToDoMapper;
+import de.dhia.todo.repository.ToDoRepository;
+import de.dhia.todo.dto.ToDoRequest;
+import de.dhia.todo.dto.ToDoResponse;
+import de.dhia.todo.entity.ToDo;
+import de.dhia.todo.enums.Status;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;

@@ -1,4 +1,4 @@
-package de.mitigant.todo;
+package de.dhia.todo;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
-import de.mitigant.todo.dto.ToDoRequest;
-import de.mitigant.todo.dto.ToDoResponse;
-import de.mitigant.todo.entity.ToDo;
-import de.mitigant.todo.enums.Status;
-import de.mitigant.todo.mapper.ToDoMapper;
-import de.mitigant.todo.repository.ToDoRepository;
-import de.mitigant.todo.service.ToDoService;
+import de.dhia.todo.enums.Status;
+import de.dhia.todo.mapper.ToDoMapper;
+import de.dhia.todo.repository.ToDoRepository;
+import de.dhia.todo.service.ToDoService;
+import de.dhia.todo.dto.ToDoRequest;
+import de.dhia.todo.dto.ToDoResponse;
+import de.dhia.todo.entity.ToDo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

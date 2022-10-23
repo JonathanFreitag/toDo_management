@@ -1,9 +1,6 @@
-package de.mitigant.todo.entity;
+package de.dhia.todo.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
-import de.mitigant.todo.enums.Status;
+import de.dhia.todo.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

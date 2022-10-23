@@ -1,9 +1,9 @@
-package de.mitigant.todo.controller;
+package de.dhia.todo.controller;
 
-import de.mitigant.todo.dto.ToDoRequest;
-import de.mitigant.todo.dto.ToDoResponse;
-import de.mitigant.todo.entity.ToDo;
-import de.mitigant.todo.service.ToDoService;
+import de.dhia.todo.dto.ToDoRequest;
+import de.dhia.todo.service.ToDoService;
+import de.dhia.todo.dto.ToDoResponse;
+import de.dhia.todo.entity.ToDo;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.info.Info;

@@ -1,7 +1,7 @@
-package de.mitigant.todo.repository;
+package de.dhia.todo.repository;
 
-import de.mitigant.todo.entity.ToDo;
-import de.mitigant.todo.enums.Status;
+import de.dhia.todo.entity.ToDo;
+import de.dhia.todo.enums.Status;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,6 @@
-package de.mitigant.todo.dto;
+package de.dhia.todo.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import de.dhia.todo.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,13 +12,13 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ToDoRequest {
+public class ToDoResponse {
 
     private String description;
-
-
-
+    private Status status;
+    private LocalDateTime doneAt;
     private LocalDateTime dueAt;
-    
+    private LocalDateTime createdAt;
+
 
 }

@@ -1,9 +1,9 @@
-package de.mitigant.todo.mapper;
+package de.dhia.todo.mapper;
 
-import de.mitigant.todo.dto.ToDoRequest;
-import de.mitigant.todo.dto.ToDoResponse;
-import de.mitigant.todo.entity.ToDo;
-import de.mitigant.todo.enums.Status;
+import de.dhia.todo.dto.ToDoRequest;
+import de.dhia.todo.dto.ToDoResponse;
+import de.dhia.todo.entity.ToDo;
+import de.dhia.todo.enums.Status;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

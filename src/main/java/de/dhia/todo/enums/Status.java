@@ -1,4 +1,4 @@
-package de.mitigant.todo.enums;
+package de.dhia.todo.enums;
 
 public enum Status {
     NOT_DONE,
