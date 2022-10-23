@@ -2,7 +2,6 @@ package de.dhia.todo.controller;
 
 import de.dhia.todo.dto.ToDoRequest;
 import de.dhia.todo.service.ToDoService;
-import de.dhia.todo.dto.ToDoResponse;
 import de.dhia.todo.entity.ToDo;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -33,32 +32,32 @@ public class ToDoController {
 
     @PostMapping
     @ResponseBody
-    public ToDoResponse create(@RequestBody ToDoRequest item) {
+    public ToDo create(@RequestBody ToDoRequest item) {
         return toDoService.addItem(item);
 
     }
 
     @PatchMapping("/{id}")
     @ResponseBody
-    public ToDoResponse update(@PathVariable("id") UUID id, @RequestParam String description) {
+    public ToDo update(@PathVariable("id") UUID id, @RequestParam String description) {
         return toDoService.updateDescription(id, description);
     }
 
     @GetMapping("/{id}")
     @ResponseBody
-    public ToDoResponse getItem(@PathVariable("id") UUID id) {
+    public ToDo getItem(@PathVariable("id") UUID id) {
         return toDoService.getSpecificItem(id);
     }
 
     @PatchMapping("/status/done/{id}")
     @ResponseBody
-    public ToDoResponse markItemAsDone(@PathVariable("id") UUID id){
+    public ToDo markItemAsDone(@PathVariable("id") UUID id){
         return toDoService.markItemAsStatusDone(id);
     }
 
     @PatchMapping("/status/notdone/{id}")
     @ResponseBody
-    public ToDoResponse markItemAsNotDone(@PathVariable("id") UUID id, @RequestParam("newduedate") @DateTimeFormat(iso =
+    public ToDo markItemAsNotDone(@PathVariable("id") UUID id, @RequestParam("newduedate") @DateTimeFormat(iso =
             DateTimeFormat.ISO.DATE_TIME) @Parameter(example="2022-10-08T20:45:59.002Z") LocalDateTime
              newDueDate){
         return toDoService.markItemAsStatusNotDone(id, newDueDate);

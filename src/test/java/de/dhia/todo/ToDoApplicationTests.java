@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import de.dhia.todo.enums.Status;
@@ -12,7 +11,6 @@ import de.dhia.todo.mapper.ToDoMapper;
 import de.dhia.todo.repository.ToDoRepository;
 import de.dhia.todo.service.ToDoService;
 import de.dhia.todo.dto.ToDoRequest;
-import de.dhia.todo.dto.ToDoResponse;
 import de.dhia.todo.entity.ToDo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -58,20 +56,16 @@ class ToDoApplicationTests {
         ToDo toDo =
                 ToDo.builder().description(DESCRIPTION).status(STATUS_NOT_DONE).createdAt(CREATE_ITEM_NOW).dueAt(DUE_AT)
                     .doneAt(null).build();
-        ToDoResponse toDoResponse =
-                ToDoResponse.builder().description(DESCRIPTION).status(STATUS_NOT_DONE).createdAt(CREATE_ITEM_NOW)
-                            .dueAt(DUE_AT)
-                            .doneAt(any()).build();
 
         //When
         when(toDoMapper.toDoRequestIntializeToToDo(toDoRequest)).thenReturn(toDo);
         when(toDoRepository.save(toDo)).thenReturn(toDo);
-        when(toDoMapper.toDoToToDoResponse(toDo)).thenReturn(toDoResponse);
+
 
         //Then
         assertAll(() -> {
-            assertNotNull(toDoResponse);
-            assertEquals(toDoResponse, toDoService.addItem(toDoRequest));
+            assertNotNull(toDo);
+            assertEquals(toDo, toDoService.addItem(toDoRequest));
         });
     }
 
@@ -98,19 +92,15 @@ class ToDoApplicationTests {
         ToDo toDo =
                 ToDo.builder().description(DESCRIPTION).status(Status.DONE).createdAt(CREATE_ITEM_NOW).dueAt(DUE_AT)
                     .doneAt(LocalDateTime.now()).build();
-        ToDoResponse toDoResponse =
-                ToDoResponse.builder().description(DESCRIPTION).status(Status.DONE).createdAt(CREATE_ITEM_NOW)
-                            .dueAt(DUE_AT)
-                            .doneAt(LocalDateTime.now()).build();
 
         //When
         when(toDoRepository.findById(ID)).thenReturn(Optional.ofNullable(toDo));
-        when(toDoMapper.toDoToToDoResponse(toDo)).thenReturn(toDoResponse);
+
 
         //Then
         assertAll(() -> {
-            assertNotNull(toDoResponse);
-            assertEquals(toDoResponse, toDoService.getSpecificItem(ID));
+            assertNotNull(toDo);
+            assertEquals(toDo, toDoService.getSpecificItem(ID));
         });
 
     }

@@ -5,7 +5,6 @@ import static java.util.Optional.ofNullable;
 import de.dhia.todo.mapper.ToDoMapper;
 import de.dhia.todo.repository.ToDoRepository;
 import de.dhia.todo.dto.ToDoRequest;
-import de.dhia.todo.dto.ToDoResponse;
 import de.dhia.todo.entity.ToDo;
 import de.dhia.todo.enums.Status;
 import lombok.RequiredArgsConstructor;
@@ -33,10 +32,9 @@ public class ToDoService {
      * @return toDo Response
      * @exception ResponseStatusException if the request is bad
      */
-    public ToDoResponse addItem(ToDoRequest toDoRequest) {
+    public ToDo addItem(ToDoRequest toDoRequest) {
         return ofNullable(toDoRequest).map(toDoMapper::toDoRequestIntializeToToDo)
                                .map(toDoRepository::save)
-                               .map(toDoMapper::toDoToToDoResponse)
                                .orElseThrow(() -> {
                                    log.error("cannot create item" + toDoRequest);
                                    return new ResponseStatusException(HttpStatus.BAD_REQUEST, "Cannot create "
@@ -52,12 +50,11 @@ public class ToDoService {
      * @return toDo Response
      * @exception ResponseStatusException if the request is not acceptable
      */
-    public ToDoResponse updateDescription(UUID id, String description) {
+    public ToDo updateDescription(UUID id, String description) {
 
         return toDoRepository.findById(id)
                              .map(item -> item.setDescription(description))
                              .map(toDoRepository::save)
-                             .map(toDoMapper::toDoToToDoResponse)
                              .orElseThrow(() -> {
                                  log.error(" Can't update item with id = " + id);
                                  return new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,
@@ -72,9 +69,8 @@ public class ToDoService {
      * @return toDo Response
      * @exception ResponseStatusException if the Request is bed
      */
-    public ToDoResponse getSpecificItem(UUID id) {
+    public ToDo getSpecificItem(UUID id) {
         return toDoRepository.findById(id)
-                             .map(toDoMapper::toDoToToDoResponse)
                              .orElseThrow(
                                      () -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
                                              "Item not found."));
@@ -86,11 +82,11 @@ public class ToDoService {
      * @return toDo response
      * @exception ResponseStatusException if http not acceptable
      */
-    public ToDoResponse markItemAsStatusDone(UUID id) {
+    public ToDo markItemAsStatusDone(UUID id) {
 
         return toDoRepository.findToDoByStatusAndId(Status.NOT_DONE, id)
                              .map(this::setItemToDoneAndCurrentDateTime).map(toDoRepository::save)
-                             .map(toDoMapper::toDoToToDoResponse).orElseThrow(() -> {
+                             .orElseThrow(() -> {
                     log.error(" Can't update  item with id = " + id +"to as Done status");
                     return new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,
                             "Can't update this item to Done");
@@ -117,7 +113,7 @@ public class ToDoService {
      * @return toDo Response
      *
      */
-    public ToDoResponse markItemAsStatusNotDone(UUID id, LocalDateTime newdueDate) {
+    public ToDo markItemAsStatusNotDone(UUID id, LocalDateTime newdueDate) {
         ToDo itemFound = toDoRepository.findById(id).orElseThrow(
                 () -> new ResponseStatusException(HttpStatus.BAD_REQUEST,
                         "Item not found."));
@@ -129,11 +125,11 @@ public class ToDoService {
                 itemFound.setStatus(Status.NOT_DONE);
                 itemFound.setDoneAt(null);
                 itemFound.setDueAt(newdueDate);
-                return toDoMapper.toDoToToDoResponse(toDoRepository.save(itemFound));
+                return toDoRepository.save(itemFound);
 
             default:
                 log.info("can't change status because it's already not Done = " + id);
-                return toDoMapper.toDoToToDoResponse(itemFound);
+                return itemFound;
         }
 
 
