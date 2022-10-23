@@ -24,7 +24,7 @@ import java.util.UUID;
 
 @RestController
 @OpenAPIDefinition(info = @Info(title = "TODO API", description = "TODO Information"))
-@RequestMapping(value = "/api/v1/item")
+@RequestMapping(value = "/api/v1/todos")
 public class ToDoController {
 
     @Autowired
