@@ -6,4 +6,4 @@ create table todo
     done_at     timestamp with time zone,
     due_at      timestamp with time zone,
     status      varchar(20)
-);git 
+);
