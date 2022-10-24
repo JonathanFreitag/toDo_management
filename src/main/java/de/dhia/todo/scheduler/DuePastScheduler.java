@@ -6,7 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +19,6 @@ public class DuePastScheduler {
     /**
      * change to PAST_DUE for all the items that their due date-time are passed
      */
-    @Transactional
     public void changeStatusToPastDue() {
         LocalDateTime now = LocalDateTime.now();
         toDoRepository.findAll().stream().filter(item -> item.getDueAt().isBefore(now)).forEach(item -> {
