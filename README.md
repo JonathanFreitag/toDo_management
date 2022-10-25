@@ -59,7 +59,7 @@ Application will be Running in Port: 9090
 #### Database Credentials
 * JDBC URL: jdbc:h2:mem:testdb
 * User Name: dhia
-* Password: mitigant2023
+* Password: todo2023
 
 ### Swagger link
 
