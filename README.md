@@ -31,7 +31,7 @@ ToDo is a backend service allowing basic management of a simple to-do list.
 ```
 mvn clean install
 ```
-* jar file is: MitigantToDo.jar under /target folder
+* jar file is: ToDo.jar under /target folder
 ### Run the service  ###
 ```
 mvn spring-boot:run
@@ -45,7 +45,7 @@ mvn test
 ### Run in Docker Server  ###
 * Build docker file
 ```
-docker build -t todo 
+docker build -t todo .
 ```
 * Run docker file
 ```

@@ -74,7 +74,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-        <finalName>MitigantToDo</finalName>
+        <finalName>ToDo</finalName>
     </build>
 
 </project>
