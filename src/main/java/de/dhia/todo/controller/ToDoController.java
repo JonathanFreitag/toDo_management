@@ -31,32 +31,27 @@ public class ToDoController {
     private ToDoService toDoService;
 
     @PostMapping
-    @ResponseBody
     public ToDo create(@RequestBody ToDoRequest item) {
         return toDoService.addItem(item);
 
     }
 
     @PatchMapping("/{id}")
-    @ResponseBody
     public ToDo update(@PathVariable("id") UUID id, @RequestParam String description) {
         return toDoService.updateDescription(id, description);
     }
 
     @GetMapping("/{id}")
-    @ResponseBody
     public ToDo getItem(@PathVariable("id") UUID id) {
         return toDoService.getSpecificItem(id);
     }
 
     @PatchMapping("/status/done/{id}")
-    @ResponseBody
     public ToDo markItemAsDone(@PathVariable("id") UUID id){
         return toDoService.markItemAsStatusDone(id);
     }
 
     @PatchMapping("/status/notdone/{id}")
-    @ResponseBody
     public ToDo markItemAsNotDone(@PathVariable("id") UUID id, @RequestParam("newduedate") @DateTimeFormat(iso =
             DateTimeFormat.ISO.DATE_TIME) @Parameter(example="2022-10-08T20:45:59.002Z") LocalDateTime
              newDueDate){
@@ -65,7 +60,6 @@ public class ToDoController {
     }
 
     @GetMapping("/status/notdone")
-    @ResponseBody
     public List<ToDo> getAllItemsNotDone(@RequestParam @Parameter(description="true : get items are not done, false: "
             + "get all items") Boolean option) {
         if (option) {
