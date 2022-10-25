@@ -25,8 +25,8 @@ ToDo is a backend service allowing basic management of a simple to-do list.
                                    |                     |   Swagger          | 
                                    |                     |   lombok           | 
                                    |                     |   Junit            |
-                                   |                     |   Mockito                 |           
-
+                                   |                     |   Mockito          |           
+                                   |                     |   Liquibase        |
 ### Build the service  ###
 ```
 mvn clean install
